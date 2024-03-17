@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Jet Template Engine!</h1>
+    <h1>You are using {{ engineName }} for templates.</h1>
 </body>
 </html>

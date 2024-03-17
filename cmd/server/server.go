@@ -1,20 +1,16 @@
 package main
 
 import (
+	"github.com/ezenicofogar/go-learn-blog/internal/api"
+	"github.com/ezenicofogar/go-learn-blog/internal/website"
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/template/jet/v2"
 )
 
 func main() {
-	templateEngine := jet.New("./templates", ".jet")
+	core := fiber.New(fiber.Config{})
 
-	app := fiber.New(fiber.Config{
-		Views: templateEngine,
-	})
+	core.Mount("/api/", api.CreateFiber())
+	core.Mount("/", website.CreateFiber())
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.Render("index", fiber.Map{})
-	})
-
-	app.Listen(":8080")
+	core.Listen(":8080")
 }
